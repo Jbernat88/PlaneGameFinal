@@ -65,8 +65,7 @@ public class PlayerMovement : MonoBehaviour
             int dir = Input.GetKeyDown(KeyCode.Q) ? -1 : 1;
             QuickSpin(dir);
         }
-
-        
+ 
     }
 
     //Cambiamos el movimento a local para no afectar a la camara
@@ -131,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         cameraParent.DOLocalMove(new Vector3(0, 0, zoom), duration);
     }
 
-    
+    /*
     void DistortionAmount(float x)
     {
         Camera.main.GetComponent<PostProcessVolume>().profile.GetSetting<LensDistortion>().intensity.value = x;
@@ -147,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         Camera.main.GetComponent<PostProcessVolume>().profile.GetSetting<ChromaticAberration>().intensity.value = x;
     }
     
-
+    */
     void Boost(bool state)
     {
 
@@ -174,9 +173,9 @@ public class PlayerMovement : MonoBehaviour
         float speed = state ? forwardSpeed * 2 : forwardSpeed;
         float zoom = state ? -7 : 0;
 
-        DOVirtual.Float(origChrom, endChrom, .5f, Chromatic);
-        DOVirtual.Float(origFov, endFov, .5f, FieldOfView);
-        DOVirtual.Float(origDistortion, endDistorton, .5f, DistortionAmount);
+        //DOVirtual.Float(origChrom, endChrom, .5f, Chromatic);
+        //DOVirtual.Float(origFov, endFov, .5f, FieldOfView);
+        //DOVirtual.Float(origDistortion, endDistorton, .5f, DistortionAmount);
         var pvel = stars.velocityOverLifetime;
         pvel.z = starsVel;
 
