@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     private int currentHealth = 100;
     public HealthRing healthRingScript;
 
+    public GameObject proyectil;
+    public GameObject lCanon;
+    public GameObject rCanon;
+
     private void Awake()
     {
         healthRingScript = FindObjectOfType<HealthRing>();
@@ -31,6 +35,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             healthRingScript.Damage(10);
+        }
+
+        //Aparición del proyectil.
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Instantiate(proyectil, lCanon.transform.position, gameObject.transform.rotation);
+            Instantiate(proyectil, rCanon.transform.position, gameObject.transform.rotation);
         }
     }
 
@@ -63,4 +74,5 @@ public class PlayerController : MonoBehaviour
         currentHealth += Change;
         healthRingScript.health = currentHealth;
     }
+
 }

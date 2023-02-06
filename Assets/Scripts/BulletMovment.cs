@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletMovment : MonoBehaviour
 {
-    public float speed = 10f;//Velocidad de la bala   
+    public float speed = 20f;//Velocidad de la bala   
     public float timelife = 5f;
 
     public GameObject explosionEffect;
