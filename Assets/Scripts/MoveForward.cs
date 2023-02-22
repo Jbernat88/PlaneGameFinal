@@ -18,6 +18,6 @@ public class MoveForward : MonoBehaviour
     {
 
         //Movimiento en forward
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 }

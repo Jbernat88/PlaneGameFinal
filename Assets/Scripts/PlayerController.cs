@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
     public GameObject lCanon;
     public GameObject rCanon;
 
+    private bool canShoot = true;
+    public float coolDown = 1f;
+
+    public ParticleSystem explosion;
+
     private void Awake()
     {
         healthRingScript = FindObjectOfType<HealthRing>();
@@ -40,13 +45,20 @@ public class PlayerController : MonoBehaviour
         //Aparición del proyectil.
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            Instantiate(proyectil, lCanon.transform.position, gameObject.transform.rotation);
-            Instantiate(proyectil, rCanon.transform.position, gameObject.transform.rotation);
+            if (canShoot)
+            {
+                canShoot = false;
+                StartCoroutine(ShootCooldown());
+
+                Instantiate(proyectil, lCanon.transform.position, proyectil.transform.rotation);
+                Instantiate(proyectil, rCanon.transform.position, proyectil.transform.rotation);
+            }
         }
     }
 
     private void OnTriggerEnter(Collider otherCollider)
     {
+        Debug.Log(otherCollider.gameObject.name);
 
         if (otherCollider.gameObject.CompareTag("Money")) //Moneda
         {
@@ -59,20 +71,30 @@ public class PlayerController : MonoBehaviour
         {
             UpdateLive(-10);
         }
+
+        if (otherCollider.gameObject.CompareTag("Wall")) //Moneda
+        {
+            gameObject.SetActive(false);
+            Instantiate(explosion, transform.position, transform.rotation);
+        }
     }
 
     public void UpdateScore(int pointsToAdd)
     {
         score++;//Linea per actualitzar el score
         pointText.text = $"Coins: {score}/{maxScore}";
-
-       // Debug.Log($"Tienes");
     }
 
     private void UpdateLive(int Change)
     {
         currentHealth += Change;
         healthRingScript.health = currentHealth;
+    }
+
+    IEnumerator ShootCooldown()
+    {
+        yield return new WaitForSeconds(coolDown);
+        canShoot = true;
     }
 
 }

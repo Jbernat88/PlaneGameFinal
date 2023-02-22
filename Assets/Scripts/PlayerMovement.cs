@@ -15,7 +15,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Parameters")]
     public float xySpeed = 18;
     public float lookSpeed = 340;
-    public float forwardSpeed = 6;
+    public float forwardSpeed = 12;
+    public float boostTime = 1;
+    public bool canBoost;
+    public bool isBoost;
+    public float maxboost = 20;
 
     [Space]
 
@@ -23,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform aimTarget;
     public CinemachineDollyCart dolly;
     public Transform cameraParent;
+    public CinemachineDollyCart dolly2;
 
     [Space]
 
@@ -34,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        //dolly.m_Speed
         playerModel = transform.GetChild(0);
         SetSpeed(forwardSpeed);
     }
@@ -47,19 +53,32 @@ public class PlayerMovement : MonoBehaviour
         RotationLook(h,v, lookSpeed);
         HorizontalLean(playerModel, h, 80, .1f);
 
-        //Controles del jugador
-        if (Input.GetKeyDown(KeyCode.C))
-            Boost(true);
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (!isBoost)
+            {
+                canBoost = true;
+                isBoost = true;
 
-        if (Input.GetKeyDown(KeyCode.C))
-            Boost(false);
-        
-        if (Input.GetKeyDown(KeyCode.X))
-            Break(true);
+                trail.Play();
+                circle.Play();
 
-        if (Input.GetKeyDown(KeyCode.X))
-            Break(false);
-
+                StartCoroutine(BoostCoolDown());
+            }
+        }
+     
+        if (canBoost)
+        {
+            dolly2.m_Speed = maxboost;
+            //dolly2.m_Speed = Mathf.Lerp(dolly.m_Speed, 20, Time.deltaTime * boostTime)      
+        }
+        /*
+        else
+        {
+            dolly2.m_Speed = forwardSpeed;
+           // dolly2.m_Speed = Mathf.Lerp(dolly.m_Speed, forwardSpeed, Time.deltaTime * boostTime);
+        }
+        */
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
         {
             int dir = Input.GetKeyDown(KeyCode.Q) ? -1 : 1;
@@ -130,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         cameraParent.DOLocalMove(new Vector3(0, 0, zoom), duration);
     }
 
-    /*
+    
     void DistortionAmount(float x)
     {
         Camera.main.GetComponent<PostProcessVolume>().profile.GetSetting<LensDistortion>().intensity.value = x;
@@ -145,51 +164,33 @@ public class PlayerMovement : MonoBehaviour
     {
         Camera.main.GetComponent<PostProcessVolume>().profile.GetSetting<ChromaticAberration>().intensity.value = x;
     }
-    
-    */
-    void Boost(bool state)
+
+    IEnumerator BoostCoolDown()
     {
+        yield return new WaitForSeconds(5f); //primeros 2.5 sec te quita el boost i luego espera 5 a volver a boostear.
+        canBoost = false;
 
-        if (state)
-        {
-            cameraParent.GetComponentInChildren<CinemachineImpulseSource>().GenerateImpulse();
-            trail.Play();
-            circle.Play();
-        }
-        else
-        {
-            trail.Stop();
-            circle.Stop();
-        }
-        trail.GetComponent<TrailRenderer>().emitting = state;
+        trail.Stop();
+        StartCoroutine(CoolDownSpeed());
 
-        float origFov = state ? 40 : 55;
-        float endFov = state ? 55 : 40;
-        float origChrom = state ? 0 : 1;
-        float endChrom = state ? 1 : 0;
-        float origDistortion = state ? 0 : -30;
-        float endDistorton = state ? -30 : 0;
-        float starsVel = state ? -20 : -1;
-        float speed = state ? forwardSpeed * 2 : forwardSpeed;
-        float zoom = state ? -7 : 0;
 
-        //DOVirtual.Float(origChrom, endChrom, .5f, Chromatic);
-        //DOVirtual.Float(origFov, endFov, .5f, FieldOfView);
-        //DOVirtual.Float(origDistortion, endDistorton, .5f, DistortionAmount);
-        var pvel = stars.velocityOverLifetime;
-        pvel.z = starsVel;
-
-        DOVirtual.Float(dolly.m_Speed, speed, .15f, SetSpeed);
-        SetCameraZoom(zoom, .4f);
+        yield return new WaitForSeconds(5);
+        isBoost = false;
     }
 
-    //Frenado despues de instanciar el boost
-    void Break(bool state)
+    IEnumerator CoolDownSpeed()
     {
-        float speed = state ? forwardSpeed / 3 : forwardSpeed;
-        float zoom = state ? 3 : 0;
+        float reduction = (maxboost - forwardSpeed) / 3;
+        Debug.Log($"Max: {maxboost} - Forward {forwardSpeed}");
 
-        DOVirtual.Float(dolly.m_Speed, speed, .15f, SetSpeed);
-        SetCameraZoom(zoom, .4f);
+        for(int i =1; i <= 3; i++)
+        {
+            yield return new WaitForSeconds(1f);
+            dolly2.m_Speed -= reduction;
+        }
+
+        dolly2.m_Speed = forwardSpeed;
     }
+
+
 }

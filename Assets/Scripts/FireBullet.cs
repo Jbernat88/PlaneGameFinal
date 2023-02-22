@@ -7,8 +7,7 @@ public class FireBullet : MonoBehaviour
     public GameObject bullet;
     [SerializeField]
     private float timer = 2f;//tiempo de disparo de la torreta
-                             //private float timerCount = 0f;
-
+                             
     [SerializeField]
     private int counter;
     private int maxCounter = 9999;//Max de disparos

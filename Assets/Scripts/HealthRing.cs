@@ -14,7 +14,7 @@ public class HealthRing : MonoBehaviour
     public float health;
     float lerpSpeed;
 
-    public PlayerController playerControllerScript;
+    private PlayerController playerControllerScript;
 
     private void Start()
     {
