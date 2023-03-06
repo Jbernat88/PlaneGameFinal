@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private int score = 0;
     private int maxScore = 3;
     public int points;
+    public string key;
 
     private int currentHealth = 100;
     public HealthRing healthRingScript;
@@ -37,7 +38,20 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         gameOverPanel.SetActive(false);
-        pointText.text = $"Coins: {score}/{maxScore}";
+
+        if (!PlayerPrefs.HasKey("Score1"))//si no he guardat rs secore es 0
+        {
+            pointText.text = $"Coins: {score}/{maxScore}";
+        }
+        else if (PlayerPrefs.GetInt("Score1")!= 3)//si no he guardat pero score no es 3 se manten score a 0
+        {
+            pointText.text = $"Coins: {score}/{maxScore}";
+        }
+        else
+        {
+            pointText.text = $"Coins: {maxScore}/{maxScore}";
+        }
+      
     }
 
     // Update is called once per frame
@@ -62,8 +76,8 @@ public class PlayerController : MonoBehaviour
                 canShoot = false;
                 StartCoroutine(ShootCooldown());
 
-                Instantiate(proyectil, lCanon.transform.position, proyectil.transform.rotation);
-                Instantiate(proyectil, rCanon.transform.position, proyectil.transform.rotation);
+                Instantiate(proyectil, lCanon.transform.position, transform.rotation);
+                Instantiate(proyectil, rCanon.transform.position, transform.rotation);
             }
         }
     }
@@ -74,7 +88,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(otherCollider.gameObject);
                            
-            UpdateScore(points); //Permite sumar los puntos de cada objeto          
+            UpdateScore(); //Permite sumar los puntos de cada objeto
         }
 
         if (otherCollider.gameObject.CompareTag("Bullet"))
@@ -96,10 +110,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void UpdateScore(int pointsToAdd)
+    public void UpdateScore()
     {
-        score++;//Linea per actualitzar el score
-        pointText.text = $"Coins: {score}/{maxScore}";
+        if(score < maxScore)//si començ es nivell y ya he pillat ses 3 no les pill
+        {
+            score++;//Linea per actualitzar el score
+            pointText.text = $"Coins: {score}/{maxScore}";
+
+            PlayerPrefs.SetInt(key, score);
+        }
     }
 
     private void UpdateLive(int Change)

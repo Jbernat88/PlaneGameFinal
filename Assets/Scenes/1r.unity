@@ -707,6 +707,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 58728004}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &59410007 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8615509529918658203, guid: 76aaa8cbe62a58046a18307b45e3a973,
+    type: 3}
+  m_PrefabInstance: {fileID: 1911627577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &70059601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2815,6 +2821,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AimRotationDroide (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8615509529918658203, guid: 76aaa8cbe62a58046a18307b45e3a973,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 8615509529918658212, guid: 76aaa8cbe62a58046a18307b45e3a973,
         type: 3}
       propertyPath: target
@@ -2900,7 +2911,8 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1778673819}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6077021429865636867, guid: 76aaa8cbe62a58046a18307b45e3a973, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76aaa8cbe62a58046a18307b45e3a973, type: 3}
 --- !u!1001 &316886064
 PrefabInstance:
@@ -7401,6 +7413,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 713803937}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &721877749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8615509529918658203, guid: 76aaa8cbe62a58046a18307b45e3a973,
+    type: 3}
+  m_PrefabInstance: {fileID: 900705667}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &737626422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8530,6 +8548,35 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1911627577}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &822731564
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59410007}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.7, y: 0, z: 0}
+--- !u!54 &822731565
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59410007}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &827476658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9237,6 +9284,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AimRotationDroide (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8615509529918658203, guid: 76aaa8cbe62a58046a18307b45e3a973,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 8615509529918658212, guid: 76aaa8cbe62a58046a18307b45e3a973,
         type: 3}
       propertyPath: target
@@ -9302,7 +9354,8 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1778673819}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6077021429865636867, guid: 76aaa8cbe62a58046a18307b45e3a973, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76aaa8cbe62a58046a18307b45e3a973, type: 3}
 --- !u!1001 &904275575
 PrefabInstance:
@@ -12278,6 +12331,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1204927412}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1205044834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8615509529918658203, guid: 76aaa8cbe62a58046a18307b45e3a973,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994300970}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1205044836
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205044834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.7, y: 0, z: 0}
+--- !u!54 &1205044837
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205044834}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1205450352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15856,6 +15944,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1081426642}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1563749287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8615509529918658203, guid: 76aaa8cbe62a58046a18307b45e3a973,
+    type: 3}
+  m_PrefabInstance: {fileID: 297940810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1563749289
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563749287}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.7, y: 0, z: 0}
+--- !u!54 &1563749290
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563749287}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1575338395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18517,6 +18640,35 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 900705667}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1784501607
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721877749}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.7, y: 0, z: 0}
+--- !u!54 &1784501608
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721877749}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1784918194
 GameObject:
   m_ObjectHideFlags: 0
@@ -20083,6 +20235,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AimRotationDroide (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8615509529918658203, guid: 76aaa8cbe62a58046a18307b45e3a973,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 8615509529918658212, guid: 76aaa8cbe62a58046a18307b45e3a973,
         type: 3}
       propertyPath: target
@@ -20168,7 +20325,8 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1778673819}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6077021429865636867, guid: 76aaa8cbe62a58046a18307b45e3a973, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76aaa8cbe62a58046a18307b45e3a973, type: 3}
 --- !u!1001 &1916882069
 PrefabInstance:
@@ -20291,6 +20449,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LookAt
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3598688411862052628, guid: 0b501f2feb0128445b9120551a9f529a,
+        type: 3}
+      propertyPath: key
+      value: Score1
       objectReference: {fileID: 0}
     - target: {fileID: 3598688411862052628, guid: 0b501f2feb0128445b9120551a9f529a,
         type: 3}
@@ -21161,6 +21324,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AimRotationDroide
       objectReference: {fileID: 0}
+    - target: {fileID: 8615509529918658203, guid: 76aaa8cbe62a58046a18307b45e3a973,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 8615509529918658212, guid: 76aaa8cbe62a58046a18307b45e3a973,
         type: 3}
       propertyPath: target
@@ -21246,7 +21414,8 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1778673819}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6077021429865636867, guid: 76aaa8cbe62a58046a18307b45e3a973, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76aaa8cbe62a58046a18307b45e3a973, type: 3}
 --- !u!4 &2009025648 stripped
 Transform:

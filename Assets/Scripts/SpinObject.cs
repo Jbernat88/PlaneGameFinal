@@ -7,6 +7,8 @@ public class SpinObject : MonoBehaviour
 {
     public float spinSpeed = 30f;
     public Vector3 direction;
+    public bool activePlanet;
+
 
     public string sceneName;
 
@@ -18,6 +20,9 @@ public class SpinObject : MonoBehaviour
 
     private void OnMouseDown()
     {
-        SceneManager.LoadScene(sceneName);
+        if (activePlanet)
+        {
+            SceneManager.LoadScene(sceneName);
+        }   
     }
 }

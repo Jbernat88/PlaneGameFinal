@@ -20,7 +20,7 @@ public class MoveForward : MonoBehaviour
     {
 
         //Movimiento en forward
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,7 +40,6 @@ public class MoveForward : MonoBehaviour
         {
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            Destroy(other.gameObject);
         }
 
 

@@ -10,7 +10,7 @@ public class AimRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 targetOrientation = target.position - transform.position;// Direeción de apuntado
+        Vector3 targetOrientation = target.position - transform.position;// Direeciï¿½n de apuntado
         Debug.DrawRay(transform.position, targetOrientation, Color.green);//Linea para ver donde apunta la torreta
         transform.LookAt(target.transform);
         /*
@@ -18,5 +18,17 @@ public class AimRotation : MonoBehaviour
         Quaternion targetOrientationQuaternion = Quaternion.LookRotation(targetOrientation);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetOrientationQuaternion, Time.deltaTime);
         */
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Collider>().tag == "Proyectil") //Cuando colisione con el player se destruye la bala y se activa el effecto de particulas
+        {
+            Debug.Log("fer");
+            //Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+            //soundManager.SelecionAudio(6, 0.3f
+        }
     }
 }
