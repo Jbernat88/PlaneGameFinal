@@ -120,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   timelife: 5
+  explosionEffect: {fileID: 0}
 --- !u!136 &-3581353581450173044
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -128,7 +129,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2400008605939402538}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1.3551776
   m_Height: 109.201454

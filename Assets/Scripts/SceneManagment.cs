@@ -19,4 +19,9 @@ public class SceneManagment : MonoBehaviour
     {
         SceneManager.LoadScene("Options");
     }
+
+    public void Map1()
+    {
+        SceneManager.LoadScene("1r");
+    }
 }

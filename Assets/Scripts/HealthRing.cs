@@ -8,16 +8,21 @@ public class HealthRing : MonoBehaviour
 {
     public TextMeshProUGUI healthText;
     public Image  ringHealthBar;
-   
+    public ParticleSystem explosion;
+    public Transform spawnParticles;
+
 
     private float maxHealth; //Vida Max
     public float health;
     float lerpSpeed;
 
+    public bool gameOver;
+
     private PlayerController playerControllerScript;
 
     private void Start()
     {
+        gameOver = false;
         playerControllerScript = FindObjectOfType<PlayerController>();
         maxHealth = health;
     }
@@ -31,7 +36,9 @@ public class HealthRing : MonoBehaviour
 
         if( health <= 0)
         {
-             
+            gameOver = true;
+            gameObject.SetActive(false);
+            Instantiate(explosion, spawnParticles.position, spawnParticles.rotation);
         }
 
         HealthBarFiller();

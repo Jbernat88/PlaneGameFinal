@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12182f8ad040ea4f9475984029357fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 70
-  timelife: 1.5
+  speed: 150
+  timelife: 1
   explosionEffect: {fileID: 3725599800265232498, guid: 71799bf42bf0ef1488eff019152749c7,
     type: 3}
 --- !u!96 &4738817296840815795

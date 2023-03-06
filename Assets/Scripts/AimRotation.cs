@@ -12,9 +12,11 @@ public class AimRotation : MonoBehaviour
     {
         Vector3 targetOrientation = target.position - transform.position;// Direeción de apuntado
         Debug.DrawRay(transform.position, targetOrientation, Color.green);//Linea para ver donde apunta la torreta
-
+        transform.LookAt(target.transform);
+        /*
         //Slerp
         Quaternion targetOrientationQuaternion = Quaternion.LookRotation(targetOrientation);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetOrientationQuaternion, Time.deltaTime);
+        */
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem explosion;
 
+    public GameObject gameOverPanel;
+
+    
+
     private void Awake()
     {
         healthRingScript = FindObjectOfType<HealthRing>();
@@ -31,12 +36,19 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameOverPanel.SetActive(false);
         pointText.text = $"Coins: {score}/{maxScore}";
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (healthRingScript.gameOver)
+        {
+            gameOverPanel.SetActive(true);
+            gameObject.SetActive(false);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             healthRingScript.Damage(10);
@@ -58,8 +70,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider otherCollider)
     {
-        Debug.Log(otherCollider.gameObject.name);
-
         if (otherCollider.gameObject.CompareTag("Money")) //Moneda
         {
             Destroy(otherCollider.gameObject);
@@ -74,9 +84,16 @@ public class PlayerController : MonoBehaviour
 
         if (otherCollider.gameObject.CompareTag("Wall")) //Moneda
         {
-            gameObject.SetActive(false);
+            healthRingScript.gameOver = true;
+            
             Instantiate(explosion, transform.position, transform.rotation);
         }
+
+        if (otherCollider.gameObject.CompareTag("Win")) //Moneda
+        {
+            SceneManager.LoadScene("Win");
+        }
+
     }
 
     public void UpdateScore(int pointsToAdd)
