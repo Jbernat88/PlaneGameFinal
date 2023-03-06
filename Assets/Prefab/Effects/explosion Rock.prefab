@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 478438291461102542}
   - component: {fileID: 3371768598368672445}
   m_Layer: 0
-  m_Name: explosion player
+  m_Name: explosion Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4819,7 +4819,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d64a83f642da32749afcce8fb08d60f2, type: 2}
+  - {fileID: 2100000, guid: 58580be5a1ee44d42a9966d48abb8758, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4861,7 +4861,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 19497d68b37d2594fb3e269601d333be, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}

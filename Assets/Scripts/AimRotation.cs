@@ -24,7 +24,6 @@ public class AimRotation : MonoBehaviour
     {
         if (other.GetComponent<Collider>().tag == "Proyectil") //Cuando colisione con el player se destruye la bala y se activa el effecto de particulas
         {
-            Debug.Log("fer");
             //Instantiate(explosionEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
             Destroy(other.gameObject);

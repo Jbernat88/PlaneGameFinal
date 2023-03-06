@@ -121,7 +121,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   timelife: 5
-  explosionEffect: {fileID: 1720865220922645904, guid: 7c1dc26769c320c49ac96a4dfdea1faa,
+  explosionEffect: {fileID: 1720865220922645904, guid: 6078dc3989e563f41bd8136f94012159,
+    type: 3}
+  explosionRock: {fileID: 1720865220922645904, guid: 6078dc3989e563f41bd8136f94012159,
+    type: 3}
+  explosionEnemy: {fileID: 1720865220922645904, guid: be8fed08f12bc754ebec7c9474d5de02,
     type: 3}
 --- !u!136 &-3581353581450173044
 CapsuleCollider:
