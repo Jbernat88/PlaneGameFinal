@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SpinObject : MonoBehaviour
 {
-    public float spinSpeed = 30f;
+    public float spinSpeed = 30f;//Spin speed
     public Vector3 direction;
-    public bool activePlanet;
+    public bool activePlanet; 
 
 
     public string sceneName;
@@ -15,9 +15,11 @@ public class SpinObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Rotete machanic
         transform.Rotate(direction, spinSpeed * Time.deltaTime);
     }
 
+    //when we click on a planet it loads the scene depending on the name entered
     private void OnMouseDown()
     {
         if (activePlanet)

@@ -6,56 +6,46 @@ public class FireBullet : MonoBehaviour
 {
     public GameObject bullet;
     [SerializeField]
-    private float timer = 2f;//tiempo de disparo de la torreta
+    private float timer = 2f;//timer shoot of turret
                              
     [SerializeField]
     private int counter;
-    //private int maxCounter = 9999;//Max de disparos
 
     public Transform target;
-    private float attackRange = 70;
-    public bool canShoot;
+    private float attackRange = 70;//attack range of turret
+    private bool canShoot;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        canShoot = true;
-        
+        canShoot = true;//The torret can shoot 
     }
 
     private void Update()
     {
+        //The turret starts firing if the player enters the enemy's range
         float dist = Vector3.Distance(target.transform.position, transform.position);
 
         if (dist <= attackRange)
         {
-            Attack();
-            
+            Attack();            
         }
-
     }
 
     void Attack()
     {
         if (canShoot)
         {
-            canShoot = false;
-            StartCoroutine(FireBullets_CR());
+            canShoot = false;//The enemy can't shoot
+            StartCoroutine(FireBullets_CR()); //The Courutine Start
         }
     }
 
     IEnumerator FireBullets_CR()
-    {
-        Debug.Log("Inicio coroutine");
-        //for (int i = 0; i < maxCounter; i++)
-       
-            //counter++;
-            Instantiate(bullet, transform.position, transform.rotation);//Se instancia la bala
-            yield return new WaitForSeconds(timer);//Se vuelve a instanciar dependiendo de la variable timer
-            canShoot = true;
-        
-
-        Debug.Log("Fin courotin");
+    { 
+         Instantiate(bullet, transform.position, transform.rotation);//Instance the bullet
+         yield return new WaitForSeconds(timer);//It is re-instantiated depending on the timer variable
+         canShoot = true;
     }
 }

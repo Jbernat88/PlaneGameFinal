@@ -69,16 +69,10 @@ public class PlayerMovement : MonoBehaviour
      
         if (canBoost)
         {
-            dolly2.m_Speed = maxboost;
-            //dolly2.m_Speed = Mathf.Lerp(dolly.m_Speed, 20, Time.deltaTime * boostTime)      
+            dolly2.m_Speed = maxboost; 
         }
-        /*
-        else
-        {
-            dolly2.m_Speed = forwardSpeed;
-           // dolly2.m_Speed = Mathf.Lerp(dolly.m_Speed, forwardSpeed, Time.deltaTime * boostTime);
-        }
-        */
+        
+        //Quick spin of the player
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
         {
             int dir = Input.GetKeyDown(KeyCode.Q) ? -1 : 1;
@@ -87,14 +81,14 @@ public class PlayerMovement : MonoBehaviour
  
     }
 
-    //Cambiamos el movimento a local para no afectar a la camara
+    //We change the movement to local so as not to affect the camera
     void LocalMove(float x, float y, float speed)
     {
         transform.localPosition += new Vector3(x, y, 0) * speed * Time.deltaTime;
         ClampPosition();
     }
 
-    //Limites Camara
+    //Camera Limits
     void ClampPosition()
     {
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
@@ -103,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 
-    //Mira el objeto aimPosition
+    //LOook the object (aimPosition)
     void RotationLook(float h, float v, float speed)
     {
         aimTarget.parent.position = Vector3.zero;
@@ -111,14 +105,14 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(aimTarget.position), Mathf.Deg2Rad * speed * Time.deltaTime);
     }
 
-    //Para mejorar la sensacion de movimiento nos input z.
+    //To improve the sensation of movement input z.
     void HorizontalLean(Transform target, float axis, float leanLimit, float lerpTime)
     {
         Vector3 targetEulerAngels = target.localEulerAngles;
         target.localEulerAngles = new Vector3(targetEulerAngels.x, targetEulerAngels.y, Mathf.LerpAngle(targetEulerAngels.z, -axis * leanLimit, lerpTime));
     }
 
-    //Dibuja el objeto aimPosition 
+    //Draw the lines of aimPosition
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
@@ -131,19 +125,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!DOTween.IsTweening(playerModel))
         {
-            //Hace que el player rote rapidamente.
+            //Makes the player rotate quickly
             playerModel.DOLocalRotate(new Vector3(playerModel.localEulerAngles.x, playerModel.localEulerAngles.y, 360 * -dir), .4f, RotateMode.LocalAxisAdd).SetEase(Ease.OutSine);
             barrel.Play();
         }
     }
 
-    //Mantiene la velocidad de forward speed
+    //Mantain the forward speed
     void SetSpeed(float x)
     {
         dolly.m_Speed = x;
     }
 
-    //Zoom de la camara cuando hacemos el boost.
+    //Zoom of the camera when the boost is active.
     void SetCameraZoom(float zoom, float duration)
     {
         cameraParent.DOLocalMove(new Vector3(0, 0, zoom), duration);
@@ -165,9 +159,10 @@ public class PlayerMovement : MonoBehaviour
         Camera.main.GetComponent<PostProcessVolume>().profile.GetSetting<ChromaticAberration>().intensity.value = x;
     }
 
+    //CoolDown of Boost
     IEnumerator BoostCoolDown()
     {
-        yield return new WaitForSeconds(5f); //primeros 2.5 sec te quita el boost i luego espera 5 a volver a boostear.
+        yield return new WaitForSeconds(5f); //first 2.5 sec it removes your boost and then wait 5 sec to boost again.
         canBoost = false;
 
         trail.Stop();
@@ -178,6 +173,7 @@ public class PlayerMovement : MonoBehaviour
         isBoost = false;
     }
 
+    //CoolDown of Speed
     IEnumerator CoolDownSpeed()
     {
         float reduction = (maxboost - forwardSpeed) / 3;

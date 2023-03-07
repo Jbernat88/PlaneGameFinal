@@ -11,13 +11,14 @@ public class UnlockLevels : MonoBehaviour
 
     private void Awake()
     {
+        //Conect the scripts
         _meshRenderer = GetComponent<MeshRenderer>();
         spinObjectScript = GetComponent<SpinObject>();
     }
     // Start is called before the first frame update
     void Start()
     {       
-        if (PlayerPrefs.GetInt(key) == 3)//canvia es material i activa es nivell
+        if (PlayerPrefs.GetInt(key) == 3)//cahnge the material and active the level
         {
             spinObjectScript.enabled = true;
             spinObjectScript.activePlanet = true;

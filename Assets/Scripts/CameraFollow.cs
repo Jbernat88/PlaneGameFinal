@@ -43,6 +43,7 @@ public class CameraFollow : MonoBehaviour
         transform.localPosition = new Vector3(Mathf.Clamp(localPos.x, -limits.x, limits.x), Mathf.Clamp(localPos.y, -limits.y, limits.y), localPos.z); //Limites en los que nos podemos mover dentro de la camara.
     }
 
+    //Follow the target (player)
     public void FollowTarget(Transform t)
     {
         Vector3 localPos = transform.localPosition;

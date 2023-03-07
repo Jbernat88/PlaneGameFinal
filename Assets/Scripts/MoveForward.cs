@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class MoveForward : MonoBehaviour
 {
-    public float speed = 20f;//Velocidad de la bala 
-    public float timelife = 5f;//tiempo de duración de la bala
+    //Bullet stats
+    public float speed = 20f;//Velocity
+    public float timelife = 5f;//Time life
 
+    //Particles effects
     public GameObject explosionEffect;
     public GameObject explosionRock;
     public GameObject explosionEnemy;
@@ -14,13 +16,13 @@ public class MoveForward : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, timelife); //En 5 segundos se destruye la bala
+        Destroy(gameObject, timelife); //The bullet has been destroyed after 5 seconds
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Movimiento en forward
+        //Forward movment
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
@@ -28,22 +30,20 @@ public class MoveForward : MonoBehaviour
     {
        
 
-        if (other.tag == "Enemy") //Cuando colisione con el player se destruye la bala y se activa el effecto de particulas
+        if (other.tag == "Enemy") //When it collides with the Enemy, the bullet and the enemy, is destroyed and the particle effect is activated
         {
-            Debug.Log("fer");
             Instantiate(explosionEnemy, transform.position, Quaternion.identity);
             Destroy(gameObject);
             Destroy(other.gameObject);
-            //soundManager.SelecionAudio(6, 0.3f
         }
 
-        if (other.tag == "Wall") //Cuando colisione con la pared se destruye la bala y se activa el effecto de particulas
+        if (other.tag == "Wall") //When it collides with the  the bullet, is destroyed and the particle effect is activated
         {
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
-        if (other.tag == "Asteroid") //Cuando colisione con la pared se destruye la bala y se activa el effecto de particulas
+        if (other.tag == "Asteroid") //When it collides with the Asteroids, the bullet and the asteroid, is destroyed and the particle effect is activated
         {
             Instantiate(explosionRock, transform.position, Quaternion.identity);
             Destroy(gameObject);

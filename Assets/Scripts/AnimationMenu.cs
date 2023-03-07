@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimationMenu : MonoBehaviour
 {
     private Animator playerAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,21 +13,10 @@ public class AnimationMenu : MonoBehaviour
         StartCoroutine(Takeoff());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //Espera 5 seg a instanciarse la animacion del player
     public IEnumerator Takeoff()
     {
-        yield return new WaitForSeconds(10f);
-        playerAnimator.SetBool("Despegue", true);
-    }
-
-    public IEnumerator Return()
-    {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         playerAnimator.SetBool("Despegue", true);
     }
 }

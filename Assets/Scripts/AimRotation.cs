@@ -5,29 +5,23 @@ using UnityEngine;
 public class AimRotation : MonoBehaviour
 {
     [SerializeField]
-    private Transform target;
+    private Transform target;//Target that enemy always look
   
     // Update is called once per frame
     void Update()
     {
-        Vector3 targetOrientation = target.position - transform.position;// Direeci�n de apuntado
+        Vector3 targetOrientation = target.position - transform.position;//Aim Direction
         Debug.DrawRay(transform.position, targetOrientation, Color.green);//Linea para ver donde apunta la torreta
-        transform.LookAt(target.transform);
-        /*
-        //Slerp
-        Quaternion targetOrientationQuaternion = Quaternion.LookRotation(targetOrientation);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetOrientationQuaternion, Time.deltaTime);
-        */
+        transform.LookAt(target.transform); //The enemys always look the player
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Collider>().tag == "Proyectil") //Cuando colisione con el player se destruye la bala y se activa el effecto de particulas
+        if (other.GetComponent<Collider>().tag == "Proyectil") //if the player bullet collides with enemy, the enemy and the bullet has been destroyed
         {
             //Instantiate(explosionEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
             Destroy(other.gameObject);
-            //soundManager.SelecionAudio(6, 0.3f
         }
     }
 }

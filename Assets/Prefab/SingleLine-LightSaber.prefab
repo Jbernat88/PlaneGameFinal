@@ -125,7 +125,7 @@ MonoBehaviour:
     type: 3}
   explosionRock: {fileID: 1720865220922645904, guid: 6078dc3989e563f41bd8136f94012159,
     type: 3}
-  explosionEnemy: {fileID: 1720865220922645904, guid: be8fed08f12bc754ebec7c9474d5de02,
+  explosionEnemy: {fileID: 4924728148562870723, guid: 105e2655ad89cc94fb4527001bb724e0,
     type: 3}
 --- !u!136 &-3581353581450173044
 CapsuleCollider:

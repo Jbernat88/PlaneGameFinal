@@ -6,32 +6,36 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    //Score stats
     public TextMeshProUGUI pointText;
     private int score = 0;
     private int maxScore = 3;
-    public int points;
-    public string key;
+    private int points;
+    public string key;//Key to unlock the next level
 
+    //Health stats
     private int currentHealth = 100;
-    public HealthRing healthRingScript;
+    private HealthRing healthRingScript;
 
+    //Shooting mechanic variables
     public GameObject proyectil;
     public GameObject lCanon;
     public GameObject rCanon;
-
     private bool canShoot = true;
-    public float coolDown = 1f;
+    private float coolDown = 1f;
 
+    //Particles effect
     public ParticleSystem explosion;
 
+    //Game Over Panel
     public GameObject gameOverPanel;
 
     
 
     private void Awake()
     {
-        healthRingScript = FindObjectOfType<HealthRing>();
-        healthRingScript.health = currentHealth; //Metemos la vida en la variable Health.
+        healthRingScript = FindObjectOfType<HealthRing>(); //Conect the scripts
+        healthRingScript.health = currentHealth; //We put life in the Health variable.
     }
 
     // Start is called before the first frame update
@@ -39,11 +43,11 @@ public class PlayerController : MonoBehaviour
     {
         gameOverPanel.SetActive(false);
 
-        if (!PlayerPrefs.HasKey("Score1"))//si no he guardat rs secore es 0
+        if (!PlayerPrefs.HasKey("Score1"))//If I have not saved anything the score is 0
         {
             pointText.text = $"Coins: {score}/{maxScore}";
         }
-        else if (PlayerPrefs.GetInt("Score1")!= 3)//si no he guardat pero score no es 3 se manten score a 0
+        else if (PlayerPrefs.GetInt("Score1")!= 3)//if I haven't saved the player prefs but the score stays at 0
         {
             pointText.text = $"Coins: {score}/{maxScore}";
         }
@@ -57,18 +61,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (healthRingScript.gameOver)
+        if (healthRingScript.gameOver)//If life is 0 active the Game Over Panel
         {
             gameOverPanel.SetActive(true);
             gameObject.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            healthRingScript.Damage(10);
-        }
-
-        //Aparición del proyectil.
+        //Apear the misil.
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (canShoot)
@@ -82,37 +81,45 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Player Collides
     private void OnTriggerEnter(Collider otherCollider)
     {
-        if (otherCollider.gameObject.CompareTag("Money")) //Moneda
+        if (otherCollider.gameObject.CompareTag("Money")) //Coins
         {
             Destroy(otherCollider.gameObject);
                            
             UpdateScore(); //Permite sumar los puntos de cada objeto
         }
 
-        if (otherCollider.gameObject.CompareTag("Bullet"))
+        if (otherCollider.gameObject.CompareTag("Bullet"))//Enemy Bullet
         {
-            UpdateLive(-10);
+            UpdateLive(-10);//Rest 10 live
         }
 
-        if (otherCollider.gameObject.CompareTag("Wall")) //Moneda
+        if (otherCollider.gameObject.CompareTag("Wall")) //Wall
         {
             healthRingScript.gameOver = true;
             
             Instantiate(explosion, transform.position, transform.rotation);
         }
 
-        if (otherCollider.gameObject.CompareTag("Win")) //Moneda
+        if (otherCollider.gameObject.CompareTag("Win")) //Win
         {
-            SceneManager.LoadScene("Win");
+            SceneManager.LoadScene("Win");//Change to the win scene
+        }
+
+        if (otherCollider.gameObject.CompareTag("Asteroid")) //Asteroid
+        {
+            healthRingScript.gameOver = true;
+
+            Instantiate(explosion, transform.position, transform.rotation);
         }
 
     }
 
     public void UpdateScore()
     {
-        if(score < maxScore)//si començ es nivell y ya he pillat ses 3 no les pill
+        if(score < maxScore)//If the level starts and I have already collected the 3, they do not add up
         {
             score++;//Linea per actualitzar el score
             pointText.text = $"Coins: {score}/{maxScore}";
@@ -127,6 +134,7 @@ public class PlayerController : MonoBehaviour
         healthRingScript.health = currentHealth;
     }
 
+    //CoolDown of shoot
     IEnumerator ShootCooldown()
     {
         yield return new WaitForSeconds(coolDown);

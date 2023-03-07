@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BulletMovment : MonoBehaviour
 {
-    public float speed = 20f;//Velocidad de la bala   
-    public float timelife = 5f;
+    public float speed = 20f;//Velocity of the bullet  
+    public float timelife = 5f;//Time Life of the bullet
 
     public GameObject explosionEffect;
 
@@ -13,36 +13,29 @@ public class BulletMovment : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, timelife); //En 5 segundos se destruye la bala
+        Destroy(gameObject, timelife); //after 5 seconds the bullet has been destroyed
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Movimiento en forward
+        //Forward Movment
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
+    //Bullet colliders
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") //Cuando colisione con el player se destruye la bala y se activa el effecto de particulas
+        if (other.tag == "Player") //When it collides with the wplayer, the bullet is destroyed and the particle effect is activated
         {
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-
-            //soundManager.SelecionAudio(6, 0.3f);
+            Destroy(gameObject); //Destroy the bullet
         }
 
-        if (other.tag == "Wall") //Cuando colisione con la pared se destruye la bala y se activa el effecto de particulas
+        if (other.tag == "Wall") //When it collides with the wall, the bullet is destroyed and the particle effect is activated
         {
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            Destroy(gameObject);//Destroy the bullet
         }
     }
-    /*
-    private void Awake()
-    {
-        soundManager = FindObjectOfType<SoundManager>();
-    }
-    */
 }
