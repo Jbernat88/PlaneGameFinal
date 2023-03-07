@@ -12,6 +12,8 @@ TagManager:
   - Proyectil
   - FxTemporaire
   - Asteroid
+  - GameManager
+  - GameMusic
   layers:
   - Default
   - TransparentFX
