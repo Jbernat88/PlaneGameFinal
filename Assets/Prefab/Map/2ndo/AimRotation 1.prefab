@@ -230,6 +230,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock Type2 04 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6307594367806489913, guid: 5db0b42536168fe488c89fe2abceb294,
+        type: 3}
+      propertyPath: m_TagString
+      value: Asteroid
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -4691169169445606695, guid: 5db0b42536168fe488c89fe2abceb294, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5db0b42536168fe488c89fe2abceb294, type: 3}

@@ -30,7 +30,12 @@ public class PlayerController : MonoBehaviour
     //Game Over Panel
     public GameObject gameOverPanel;
 
+    //Audios
+    private AudioSource playerAudioSource;
+    public AudioClip[] list;
     
+
+
 
     private void Awake()
     {
@@ -41,6 +46,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerAudioSource = GetComponent<AudioSource>();
+
         gameOverPanel.SetActive(false);
 
         if (!PlayerPrefs.HasKey("Score1"))//If I have not saved anything the score is 0
@@ -72,6 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             if (canShoot)
             {
+                playerAudioSource.PlayOneShot(list[3]);
                 canShoot = false;
                 StartCoroutine(ShootCooldown());
 
@@ -86,18 +94,21 @@ public class PlayerController : MonoBehaviour
     {
         if (otherCollider.gameObject.CompareTag("Money")) //Coins
         {
+            playerAudioSource.PlayOneShot(list[0]);
             Destroy(otherCollider.gameObject);
                            
-            UpdateScore(); //Permite sumar los puntos de cada objeto
+            UpdateScore(); //Add points in all the object
         }
 
         if (otherCollider.gameObject.CompareTag("Bullet"))//Enemy Bullet
         {
+            playerAudioSource.PlayOneShot(list[1]);
             UpdateLive(-10);//Rest 10 live
         }
 
         if (otherCollider.gameObject.CompareTag("Wall")) //Wall
         {
+            playerAudioSource.PlayOneShot(list[2]);
             healthRingScript.gameOver = true;
             
             Instantiate(explosion, transform.position, transform.rotation);
@@ -110,6 +121,7 @@ public class PlayerController : MonoBehaviour
 
         if (otherCollider.gameObject.CompareTag("Asteroid")) //Asteroid
         {
+            playerAudioSource.PlayOneShot(list[2]);
             healthRingScript.gameOver = true;
 
             Instantiate(explosion, transform.position, transform.rotation);

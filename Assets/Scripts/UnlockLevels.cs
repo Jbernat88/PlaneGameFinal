@@ -23,7 +23,6 @@ public class UnlockLevels : MonoBehaviour
             spinObjectScript.enabled = true;
             spinObjectScript.activePlanet = true;
             _meshRenderer.material = unlockedMat;
-        }
-       
+        }     
     }
 }

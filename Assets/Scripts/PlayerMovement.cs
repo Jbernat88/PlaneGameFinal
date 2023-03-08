@@ -37,9 +37,14 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem barrel;
     public ParticleSystem stars;
 
+    //Audio
+    private AudioSource playerMovAudioSource;
+    public AudioClip[] mov;
+
     void Start()
     {
-        //dolly.m_Speed
+        playerMovAudioSource = GetComponent<AudioSource>();
+
         playerModel = transform.GetChild(0);
         SetSpeed(forwardSpeed);
     }
@@ -57,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!isBoost)
             {
+                playerMovAudioSource.PlayOneShot(mov[0]);
                 canBoost = true;
                 isBoost = true;
 
@@ -75,10 +81,10 @@ public class PlayerMovement : MonoBehaviour
         //Quick spin of the player
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
         {
+            playerMovAudioSource.PlayOneShot(mov[1]);
             int dir = Input.GetKeyDown(KeyCode.Q) ? -1 : 1;
             QuickSpin(dir);
         }
- 
     }
 
     //We change the movement to local so as not to affect the camera
